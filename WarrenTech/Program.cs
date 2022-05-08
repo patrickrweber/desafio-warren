@@ -1,63 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿#region Proposta Desafio
+//Alguns números inteiros positivos n possuem uma propriedade na qual a soma de n + reverso(n) resultam em
+//números ímpares. Por exemplo, 36 + 63 = 99 e 409 + 904 = 1313. Considere que n ou reverso(n) não podem
+//começar com 0. Existem 120 números reversíveis abaixo de 1000.
+//Construa um algoritmo que mostre na tela todos os números n onde a soma de n + reverso(n) resultem em
+//números ímpares que estão abaixo de 1 milhão.
+#endregion
+using System;
 namespace WarrenTech
 {
     class Program
     {
-        public static int Inverter(int n)
-        {
-            int resultado = 0;
-            while (n > 0)
-            {
-                resultado = 10 * resultado + n % 10;
-                if (resultado == 0)
-                {
-                    goto Fim;
-                }
-                n /= 10;
-            }
-        Fim:
-            return resultado;
-        }
-
         static void Main(string[] args)
         {
-            int cont = 0;
-            int qtdDigitos = 0;
-            int contador = 0;
-            for (int i = 0; i < 1000000; i++)
+            #region Declaracao variaveis
+            Metodos metodo = new Metodos();
+            int reversiveis = 0;
+            #endregion
+
+            #region Loop 1 ao 1 milhão
+            for (int numero = 0; numero < 1000000; numero++)
             {
-                int soma = i + Inverter(i);
-                int quantidade = soma;
-                while (quantidade > 0)
+                int soma = numero + metodo.InverterNumero(numero);
+                int qtdDigitos = metodo.ContarDigitos(soma);
+                int impares = metodo.VerificarReversibilidade(soma);
+                if (impares == qtdDigitos && impares > 0)
                 {
-                    qtdDigitos++;
-                    quantidade /= 10;
+                    reversiveis++;
                 }
-                while (soma > 0)
-                {
-                    int digito = soma % 10;
-                    List<int> listaNumeros = new List<int>();
-                    listaNumeros.Add(digito);
-                    foreach (int num in listaNumeros)
-                    {
-                        if (num % 2 == 1 && num != 0)
-                        {
-                            contador++;
-                        }
-                    }
-                    soma /= 10;
-                }
-                if (contador == qtdDigitos && contador > 0)
-                {
-                    cont++;
-                }
-                contador = 0;
-                qtdDigitos = 0;
             }
-            Console.WriteLine(cont);
+            #endregion
+
+            #region Saída
+            Console.WriteLine(reversiveis);
             Console.ReadKey();
+            #endregion
         }
     }
 }
