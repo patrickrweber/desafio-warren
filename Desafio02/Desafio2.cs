@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace Desafio02
 {
-    class Program
+    class Desafio2
     {
         static void Main(string[] args)
         {

@@ -8,7 +8,7 @@
 using System;
 namespace WarrenTech
 {
-    class Program
+    class Desafio1
     {
         static void Main(string[] args)
         {

@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 
 namespace Desafio03
 {
-    class Program
+    class Desafio3
     {
         
         static void Main(string[] args)
